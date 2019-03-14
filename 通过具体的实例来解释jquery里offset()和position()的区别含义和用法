@@ -1,0 +1,24 @@
+query里内置的offset函数是用来获取元素在当前窗口的相对偏移。
+
+这句是官方文档里的解释，让站长自己用“自己的话”来解释的话就是：
+
+把document对象（即整个网页主体）当成一个长方形，在这个“长方形”里放着各个容器（如div,p,table等）和元素（如button img font等），而$.offset()获取的就是元素的左上角距离“长方形”,即document对象的左上角的水平距离(left)，和垂直距离(top)。
+
+如：$("div#aijquery").offset().top ，我们获取到的就是页面里ID为aijquery的div标签，距离整个页面(document对象)的顶部的距离，和页面的滚动条是没有关系的。
+
+但是，如果一个元素设置了position:absolute属性的话，那么，我们通过$.offset()获取到的，就不是上面我们所说的，距离document对象的距离了，而是它自身的top和left的css属性。
+
+好了，站长语言表达能力比较差，上面说的文字太多，看起来可能很费事，没关系，站长还准备了一个在线的实例演示：
+
+jquery里offset和position的具体效果的在线演示
+
+上面这个实例非常简单，网面里添加了一个很大的DIV，让浏览器出现滚动条，然后在div里添加了几个不同形式的按钮，一个是正常添加的按钮，一个是float:right按钮，一个是通过position:absolute定位的按钮，不管按哪个按钮，都会弹出所有按钮及div的offset属性。
+
+大家在想动手测试的时候，可以直接在上面这个实例的基础上，修改代码来自己测试！！
+
+jquery里position函数则是用来获取元素相对父元素的偏移。
+
+用站长自己的话来解释的话，和offset不同的是，offset是以整个文档(document对象)当“参照物”，而position则是以元素的父元素当“参照物”。
+
+需要注意的是，offset会计算元素的margin ，padding属性值，而position并不会计算，因为在CSS里，一个元素的margin或padding本就属性这个元素主体的“一部分”，所以在使用position来计算元素相对父元素的距离时，是以这个元素的整体来计算的，因此position属性并不计算元素的margin和padding值。
+摘自  爱jQuery：http://www.aijquery.cn/Html/jqueryhanshu/134.html
